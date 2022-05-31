@@ -1,0 +1,12 @@
+aws:
+  aws_access_key_id: !vault |
+    $ANSIBLE_VAULT;1.1;AES256
+    <TODO ENCRYPTED VALUE>
+  aws_secret_access_key: !vault |
+    $ANSIBLE_VAULT;1.1;AES256
+    <TODO ENCRYPTED VALUE>
+
+ssh_key:
+  ssh_privatekey: !vault |
+    $ANSIBLE_VAULT;1.1;AES256
+    <TODO ENCRYPTED VALUE>

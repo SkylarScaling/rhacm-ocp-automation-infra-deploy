@@ -1,0 +1,37 @@
+openshift:
+  hosts:
+    localhost:
+      ansible_connection: local
+  vars:
+    bin_dir: /usr/local/bin
+    working_dir: /tmp
+    state: present
+    ocp_cluster:
+      name: "{{ hub_cluster_name }}"
+      ocp_version: "4.8"
+      env: "hub"
+    install_config:
+      cluster_name: "{{ ocp_cluster.name }}"
+      aws_region: "{{ aws_region }}"
+      base_domain: "<base_domain>"
+      control_plane:
+        instance_type: "m5.2xlarge"
+      workers:
+        instance_type: "m5.2xlarge"
+        replicas: "3"
+      pull_secret: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          <TODO ENCRYPTED VALUE>
+    gitops:
+      infra_config_username: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          <TODO ENCRYPTED VALUE>
+      infra_config_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          <TODO ENCRYPTED VALUE>
+    azure:
+      app_client_id: "<TODO>"
+      identity_issuer: "https://login.microsoftonline.com/<TODO>"
+      oauth_secret: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          <TODO ENCRYPTED VALUE>
